@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-display: "Poppins", "sans-serif";
+  --breakpoint-3xl: 1920px;
+  --color-primary: #1368ec;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+  }
+  body {
+    background-color: #fcfbfc;
+    overflow-x: hidden;
+  }
+}
+
+.input-box {
+  @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100/5 rounded px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none;
+}
+/* btn commented styles */
+/* .btn-primary {
+  @apply w-full text-sm font-medium text-white bg-primary shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-blue-600/15 hover:text-blue-600 cursor-pointer;
+} */
+
+.card {
+  @apply bg-white p-6 rounded-2xl shadow-md shadow-gray-100 border border-gray-200/50;
+}
+.card-btn {
+  @apply flex items-center gap-3 text-[12px] font-medium text-gray-700 hover:text-blue-500 bg-gray-50 hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-gray-200/50 cursor-pointer;
+}
+
+.form-card {
+  @apply bg-white p-6 rounded-lg shadow-md shadow-gray-100 border border-gray-200/50;
+}
+
+.form-input {
+  @apply w-full text-sm text-black bg-white px-2.5 placeholder:text-gray-500 rounded-md py-3 mt-2 border border-slate-100 outline-none focus:border-blue-500;
+}
+.card-btn-fill {
+  @apply flex items-center gap-3 text-[12px] font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-1.5 rounded-lg border border-blue-600 cursor-pointer;
+}
+.add-btn {
+  @apply w-full flex items-center justify-center gap-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-lg border border-blue-200/50 cursor-pointer;
+}
+.download-btn {
+  @apply items-center gap-3 text-xs md:text-[13px] text-lime-900 font-medium bg-lime-100 hover:bg-lime-200 px-2 md:px-3 py-2 rounded border border-lime-200 hover:border-lime-400 cursor-pointer;
+}
+.create-btn {
+  @apply items-center gap-3 text-xs md:text-[13px] text-sky-500 font-medium bg-sky-100 hover:bg-sky-200 px-2 md:px-3 py-2 rounded border border-sky-200 hover:border-sky-400 cursor-pointer;
+}
+.user-card {
+  background: white; padding: 1rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid rgba(229, 231, 235, 0.5); position: relative; transition: all 0.3s ease;
+}
+.user-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
