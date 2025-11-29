@@ -36,7 +36,7 @@ cd ../ && cd frontend && npm install
 
 ```bash
 MONGO_URI = mongodb://127.0.0.1:27017/abc
-JWT_Token = yourr token
+JWT_Token = your_token
 JWT_Expire = 30d
 AdminInviteToken = as_you_wish
 ```
