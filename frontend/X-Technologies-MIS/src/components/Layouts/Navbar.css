@@ -1,0 +1,51 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+  backdrop-filter: blur(2px);
+  padding: 28px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.menu-toggle {
+  display: block;
+  color: #000000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.brand-x {
+  color: #fb923c;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sidemenu-overlay {
+  position: fixed;
+  top: 61px;
+  left: 0;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 280px;
+  z-index: 20;
+}

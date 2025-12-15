@@ -1,0 +1,35 @@
+/* CustomBarChart.css */
+
+.bar-chart-container {
+  background-color: #ffffff;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tooltip-box {
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+}
+
+.tooltip-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6d28d9;
+  margin-bottom: 4px;
+}
+
+.tooltip-text {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.tooltip-text span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}

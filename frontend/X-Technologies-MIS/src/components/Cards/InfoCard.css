@@ -1,0 +1,41 @@
+/* InfoCard.css */
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  .dot {
+    width: 8px;
+    height: 16px;
+  }
+}
+
+.label-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.label-text .value {
+  font-size: 14px;
+  color: #000000;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .label-text {
+    font-size: 14px;
+  }
+
+  .label-text .value {
+    font-size: 15px;
+  }
+}

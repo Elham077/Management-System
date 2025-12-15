@@ -1,0 +1,87 @@
+/* TodoListInput.css */
+
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9fafb;
+  border: 1px solid #f3f4f6;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.todo-index {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.todo-text {
+  font-size: 12px;
+  color: #000000;
+}
+
+.delete-btn {
+  color: #ef4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #b91c1c;
+}
+
+.delete-icon {
+  font-size: 18px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 20px;
+}
+
+.todo-input {
+  width: 100%;
+  font-size: 13px;
+  color: #000000;
+  outline: none;
+  background-color: #ffffff;
+  border: 1px solid #f3f4f6;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 13px;
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-btn:hover {
+  background-color: #2563eb;
+}
+
+.add-icon {
+  font-size: 18px;
+}

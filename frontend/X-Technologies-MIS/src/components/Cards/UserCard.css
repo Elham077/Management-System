@@ -1,0 +1,140 @@
+/* UserCard.css */
+
+.user-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.user-card.expandable {
+  cursor: pointer;
+}
+
+.user-card.expandable:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #60a5fa, #a78bfa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-icon {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.user-info .name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.user-info .email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.task-progress {
+  margin-top: 16px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 6px;
+  height: 6px;
+}
+
+.progress-fill {
+  background-color: #10b981;
+  height: 6px;
+  border-radius: 6px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid;
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-card.pending {
+  background-color: #f5f3ff;
+  color: #7c3aed;
+  border-color: #c4b5fd;
+}
+
+.stat-card.in-progress {
+  background-color: #ecfeff;
+  color: #0891b2;
+  border-color: #a5f3fc;
+}
+
+.stat-card.completed {
+  background-color: #eef2ff;
+  color: #4f46e5;
+  border-color: #c7d2fe;
+}
+
+.stat-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.stat-count {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}

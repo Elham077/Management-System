@@ -4,6 +4,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { LuUsers } from "react-icons/lu";
 import Model from "../Model";
 import AvatarGroup from "../AvatarGroup";
+import "./SelectUsers.css";
 
 const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
   const [allUsers, setAllUsers] = useState([]);
@@ -53,56 +54,59 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
       setTempSelectedUsers([]);
     }
   }, [selectedUsers]);
+
   return (
-    <div className="space-y-4 mt-2">
+    <div className="select-users-container">
       {selectedUserAvatars.length === 0 && (
-        <button className="card-btn" onClick={() => setIsModalOpen(true)}>
+        <button
+          className="add-members-btn"
+          onClick={() => setIsModalOpen(true)}
+        >
           <LuUsers className="text-sm" /> Add Members
         </button>
       )}
+
       {selectedUserAvatars.length > 0 && (
-        <div
-          className="cursor-pointer flex items-center gap-3"
-          onClick={() => setIsModalOpen(true)}
-        >
+        <div className="selected-users" onClick={() => setIsModalOpen(true)}>
           <AvatarGroup avatars={selectedUserAvatars} maxVisible={3} />
         </div>
       )}
+
       <Model
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Select Users"
       >
-        <div className="space-y-4 h-[60vh] overflow-y-auto">
+        <div className="modal-content">
           {allUsers.map((user) => (
-            <div
-              key={user._id}
-              className="flex items-center gap-4 p-3 border-b border-gray-200"
-            >
+            <div key={user._id} className="user-item">
               <img
                 src={user.profileImageUrl || undefined}
                 alt={user.name}
-                className="w-10 h-10 rounded-full"
+                className="user-avatar"
               />
-              <div className="flex-1">
-                <p className="font-medium text-gray-800">{user.name}</p>
-                <p className="text-[13px] text-gray-500">{user.email}</p>
+              <div className="user-info">
+                <p className="user-name">{user.name}</p>
+                <p className="user-email">{user.email}</p>
               </div>
               <input
                 type="checkbox"
                 checked={tempSelectedUsers.includes(user._id)}
                 onChange={() => toggleUserSelection(user._id)}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm outline-none"
+                className="user-checkbox"
               />
             </div>
           ))}
         </div>
 
-        <div className="flex justify-end gap-4 pt-4">
-          <button className="card-btn" onClick={() => setIsModalOpen(false)}>
+        <div className="modal-footer">
+          <button
+            className="modal-btn cancel"
+            onClick={() => setIsModalOpen(false)}
+          >
             Cancel
           </button>
-          <button onClick={handleAssign} className="card-btn-fill">
+          <button className="modal-btn assign" onClick={handleAssign}>
             Assign
           </button>
         </div>

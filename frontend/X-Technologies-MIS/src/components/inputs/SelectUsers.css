@@ -1,0 +1,114 @@
+/* SelectUsers.css */
+
+.select-users-container {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-members-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-members-btn:hover {
+  background-color: #2563eb;
+}
+
+.selected-users {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0;
+}
+
+.user-email {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.user-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.modal-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.modal-btn.cancel {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.modal-btn.cancel:hover {
+  background-color: #e5e7eb;
+}
+
+.modal-btn.assign {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.modal-btn.assign:hover {
+  background-color: #2563eb;
+}

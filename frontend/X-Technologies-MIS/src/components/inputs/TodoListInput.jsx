@@ -1,49 +1,51 @@
 import React, { useState } from "react";
 import { HiMiniPlus, HiOutlineTrash } from "react-icons/hi2";
+import "./TodoListInput.css";
 
 const TodoListInput = ({ todoList, setTodoList }) => {
   const [option, setOption] = useState("");
+
   const handleAddOption = () => {
     if (option.trim()) {
       setTodoList([...todoList, option.trim()]);
       setOption("");
     }
   };
+
   const handleDeleteOption = (index) => {
     const updatedArr = todoList.filter((_, idx) => idx !== index);
     setTodoList(updatedArr);
   };
+
   return (
-    <div>
+    <div className="todo-list-container">
       {todoList.map((item, index) => (
-        <div
-          key={item + index}
-          className="flex items-center justify-between bg-gray-50 border border-gray-100 px-3 py-2 rounded-md mt-2"
-        >
-          <p className="text-xs text-black">
-            <span className="text-xs text-gray-400 font-semibold mr-2">
+        <div key={item + index} className="todo-item">
+          <p className="todo-text">
+            <span className="todo-index">
               {index < 9 ? `0${index + 1}` : index + 1}.
             </span>
             {item}
           </p>
           <button
             onClick={() => handleDeleteOption(index)}
-            className="text-red-500 hover:text-red-700 cursor-pointer"
+            className="delete-btn"
           >
-            <HiOutlineTrash className="text-lg" />
+            <HiOutlineTrash className="delete-icon" />
           </button>
         </div>
       ))}
-      <div className="flex items-center mt-4 gap-5">
+
+      <div className="input-row">
         <input
           type="text"
           value={option}
           onChange={({ target }) => setOption(target.value)}
           placeholder="Enter Task"
-          className="w-full text-[13px] text-black outline-none bg-white border border-gray-100 px-2 rounded-md py-2"
+          className="todo-input"
         />
-        <button onClick={handleAddOption} className="card-btn text-nowrap">
-          <HiMiniPlus className="text-lg" /> Add
+        <button onClick={handleAddOption} className="add-btn">
+          <HiMiniPlus className="add-icon" /> Add
         </button>
       </div>
     </div>

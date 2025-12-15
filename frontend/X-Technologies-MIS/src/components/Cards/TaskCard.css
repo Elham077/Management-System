@@ -1,0 +1,165 @@
+/* TaskCard.css */
+
+.task-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 16px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  cursor: pointer;
+}
+
+.status-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 16px;
+  border-radius: 4px;
+}
+
+.status-tag.in-progress {
+  color: #0891b2;
+  background-color: rgba(207, 250, 254, 0.7);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.status-tag.completed {
+  color: #84cc16;
+  background-color: #f7fee7;
+  border: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.status-tag.default {
+  color: #8b5cf6;
+  background-color: #f5f3ff;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.priority-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 16px;
+  border-radius: 4px;
+}
+
+.priority-tag.low {
+  color: #10b981;
+  background-color: #ecfdf5;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.priority-tag.medium {
+  color: #f59e0b;
+  background-color: #fffbeb;
+  border: 1px solid rgba(245, 158, 11, 0.1);
+}
+
+.priority-tag.high {
+  color: #f43f5e;
+  background-color: #fff1f2;
+  border: 1px solid rgba(244, 63, 94, 0.1);
+}
+
+.content-section {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-left: 3px solid;
+  margin-top: 16px;
+}
+
+.content-section.in-progress {
+  border-color: #0891b2;
+}
+
+.content-section.completed {
+  border-color: #6366f1;
+}
+
+.content-section.default {
+  border-color: #8b5cf6;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
+  margin-top: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.description {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 6px;
+  line-height: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.task-done {
+  font-size: 13px;
+  color: rgba(55, 65, 81, 0.8);
+  font-weight: 500;
+  margin: 8px 0;
+  line-height: 18px;
+}
+
+.task-done strong {
+  font-weight: 600;
+  color: #374151;
+}
+
+.date-section {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+.date-label {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.date-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.attachment-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #eff6ff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.attachment-icon {
+  color: #3b82f6;
+}
+
+.attachment-count {
+  font-size: 12px;
+  color: #111827;
+}

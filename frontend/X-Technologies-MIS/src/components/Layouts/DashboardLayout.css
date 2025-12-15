@@ -1,0 +1,29 @@
+/* DashboardLayout.css */
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9fafb; /* optional background */
+}
+
+.dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+.side-menu-wrapper {
+  flex-shrink: 0;
+}
+
+.content-wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+@media (max-width: 1080px) {
+  .side-menu-wrapper {
+    display: none;
+  }
+}
