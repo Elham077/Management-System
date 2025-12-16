@@ -1,0 +1,176 @@
+/* ViewTaskDetails.css */
+
+.task-details-wrapper {
+  margin-top: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+.form-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.form-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .form-title {
+    font-size: 20px;
+  }
+}
+
+.status-tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 12px;
+  border-radius: 4px;
+}
+
+.status-tag.in-progress {
+  color: #0891b2;
+  background-color: #f0fdff;
+  border: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.status-tag.completed {
+  color: #84cc16;
+  background-color: #f7fee7;
+  border: 1px solid rgba(163, 230, 53, 0.2);
+}
+
+.status-tag.default {
+  color: #8b5cf6;
+  background-color: #f5f3ff;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.info-box-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.info-box-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-top: 2px;
+}
+
+.form-grid-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .form-grid-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.todo-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+}
+
+.todo-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.todo-text {
+  font-size: 13px;
+  color: #1f2937;
+}
+
+.attachment-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.attachment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.attachment-item:hover {
+  background-color: #f3f4f6;
+}
+
+.attachment-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.attachment-index {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.attachment-link {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: underline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachment-icon {
+  color: #6b7280;
+}

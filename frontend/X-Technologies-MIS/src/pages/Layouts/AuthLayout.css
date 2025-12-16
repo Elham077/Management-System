@@ -1,0 +1,50 @@
+/* AuthLayout.css */
+
+.auth-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.auth-left {
+  width: 100vw;
+  height: 100vh;
+  padding: 32px 48px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.auth-right {
+  display: none;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .auth-right {
+    display: flex;
+  }
+
+  .auth-left {
+    width: 60vw;
+  }
+}
+
+.auth-image {
+  width: 256px;
+}
+
+@media (min-width: 1024px) {
+  .auth-image {
+    width: 90%;
+    max-width: 600px;
+  }
+}

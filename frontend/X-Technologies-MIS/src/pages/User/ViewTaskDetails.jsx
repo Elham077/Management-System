@@ -6,6 +6,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import moment from "moment";
 import { LuSquareArrowUpRight } from "react-icons/lu";
+import "./ViewTaskDetails.css";
 
 const ViewTaskDetails = () => {
   const { id } = useParams();
@@ -14,11 +15,11 @@ const ViewTaskDetails = () => {
   const getStatusTagColor = (status) => {
     switch (status) {
       case "In Progress":
-        return "text-cyan-500 bg-cyan-50 border border-cyan-500/10";
+        return "in-progress";
       case "Completed":
-        return "text-lime-500 bg-lime-50 border border-lime-500/20";
+        return "completed";
       default:
-        return "text-violet-500 bg-violet-50 border border-violet-500/10";
+        return "default";
     }
   };
 
@@ -69,19 +70,13 @@ const ViewTaskDetails = () => {
 
   return (
     <DashboardLayout activeMenu={"My Tasks"}>
-      <div className="mt-5">
+      <div className="task-details-wrapper">
         {task && (
-          <div className="grid grid-cols-1 md:grid-cols-4 mt-4">
-            <div className="form-card col-span-3">
-              <div className="flex items-center justify-between">
-                <h2 className="text-sm md:text-xl font-medium">
-                  {task?.title}
-                </h2>
-                <div
-                  className={`text-[11px] md:text-[13px] font-medium ${getStatusTagColor(
-                    task?.status
-                  )} px-4 py-0.5 rounded`}
-                >
+          <div className="form-grid">
+            <div className="form-card">
+              <div className="form-header">
+                <h2 className="form-title">{task?.title}</h2>
+                <div className={`status-tag ${getStatusTagColor(task?.status)}`}>
                   {task?.status}
                 </div>
               </div>
@@ -90,11 +85,11 @@ const ViewTaskDetails = () => {
                 <InfoBox label="Description" value={task?.description} />
               </div>
 
-              <div className="grid grid-cols-1 gap-4 mt-4">
-                <div className="col-span-6 md:col-end-4">
+              <div className="form-grid-inner mt-4">
+                <div>
                   <InfoBox label="Priority" value={task?.priority} />
                 </div>
-                <div className="col-span-6 md:col-span-4">
+                <div>
                   <InfoBox
                     label="Due Date"
                     value={
@@ -107,9 +102,7 @@ const ViewTaskDetails = () => {
               </div>
 
               <div className="mt-2">
-                <label className="text-xs font-medium text-slate-500">
-                  Todo Checklist
-                </label>
+                <label className="todo-label">Todo Checklist</label>
                 {task?.todoChecklist?.map((item, index) => (
                   <TodoCheckList
                     key={`todo_${index}`}
@@ -122,9 +115,7 @@ const ViewTaskDetails = () => {
 
               {task?.attachment?.length > 0 && (
                 <div className="mt-2">
-                  <label className="text-xs font-medium text-slate-500">
-                    Attachments
-                  </label>
+                  <label className="attachment-label">Attachments</label>
                   {task.attachment.map((link, index) => (
                     <Attachment
                       key={`link_${index}`}
@@ -147,24 +138,22 @@ export default ViewTaskDetails;
 const InfoBox = ({ label, value }) => {
   return (
     <>
-      <label className="text-xs font-medium text-slate-500">{label}</label>
-      <p className="text-[12px] md:text-[13px] font-medium text-gray-700 mt-0.5">
-        {value}
-      </p>
+      <label className="info-box-label">{label}</label>
+      <p className="info-box-value">{value}</p>
     </>
   );
 };
 
 const TodoCheckList = ({ text, isChecked, onChange }) => {
   return (
-    <div className="flex items-center gap-3 p-3">
+    <div className="todo-item">
       <input
         type="checkbox"
         checked={isChecked}
         onChange={onChange}
-        className="w-4 h-4 text-blue-400 bg-gray-100 border-gray-300 rounded-sm outline-none cursor-pointer"
+        className="todo-checkbox"
       />
-      <p className="text-[13px] text-gray-800">{text}</p>
+      <p className="todo-text">{text}</p>
     </div>
   );
 };
@@ -175,15 +164,15 @@ const Attachment = ({ index, link }) => {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex justify-between items-center bg-gray-50 border border-gray-200 px-4 py-2 rounded-md mb-3 mt-2 cursor-pointer hover:bg-gray-100 transition"
+      className="attachment-item"
     >
-      <div className="flex items-center gap-3 flex-1">
-        <span className="text-xs text-gray-400 font-semibold">
+      <div className="attachment-left">
+        <span className="attachment-index">
           {index < 9 ? `0${index + 1}` : index + 1}
         </span>
-        <p className="text-xs text-blue-600 underline truncate">{link}</p>
+        <p className="attachment-link">{link}</p>
       </div>
-      <LuSquareArrowUpRight className="text-gray-500" />
+      <LuSquareArrowUpRight className="attachment-icon" />
     </a>
   );
 };

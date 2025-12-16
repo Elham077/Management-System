@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import { PRIORITY_DATA, PROJECT_STATUS_DATA } from "../../utils/data";
@@ -7,13 +5,14 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
-import { LuTrash2 } from "react-icons/lu";
 import SelectDropDown from "../../components/inputs/SelectDropDown";
 import SelectUsers from "../../components/inputs/SelectUsers";
 import AddAttachmentInput from "../../components/inputs/AddAttachmentInput";
 import { toast } from "react-toastify";
 import Modal from "../../components/Model";
 import DeleteAlert from "../../components/DeleteAlert";
+import { LuTrash2 } from "react-icons/lu";
+import "./CreateEditProject.css";
 
 const CreateEditProject = () => {
   const location = useLocation();
@@ -53,7 +52,6 @@ const CreateEditProject = () => {
     });
   };
 
-  // create project
   const createProject = async () => {
     setLoading(true);
     try {
@@ -78,7 +76,6 @@ const CreateEditProject = () => {
     }
   };
 
-  // update project
   const updateProject = async () => {
     setLoading(true);
     try {
@@ -100,7 +97,7 @@ const CreateEditProject = () => {
       setLoading(false);
     }
   };
-  // handle submit
+
   const handleSubmit = async () => {
     setError(null);
 
@@ -147,7 +144,6 @@ const CreateEditProject = () => {
     createProject();
   };
 
-  // get project info by ID
   const getProjectDetailsById = async () => {
     try {
       const response = await axiosInstance.get(
@@ -201,16 +197,16 @@ const CreateEditProject = () => {
 
   return (
     <DashboardLayout activeMenu="Create Project">
-      <div className="mt-5">
-        <div className="grid grid-cols-1 md:grid-cols-4 mt-4 py-7">
-          <div className="form-card col-span-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl md:text-xl font-medium ">
+      <div className="create-project-wrapper">
+        <div className="form-grid">
+          <div className="form-card">
+            <div className="form-header">
+              <h2 className="form-title">
                 {projectId ? "Update Project" : "Create New Project"}
               </h2>
               {projectId && (
                 <button
-                  className="flex items-center gap-1.5 text-[13px] font-medium text-rose-500 bg-rose-50 rounded px-2 py-1 border border-rose-100 hover:border-rose-300 cursor-pointer"
+                  className="delete-btn"
                   onClick={() => setOpenDeleteAlert(true)}
                 >
                   <LuTrash2 className="text-base" />
@@ -221,9 +217,7 @@ const CreateEditProject = () => {
 
             {/* title */}
             <div className="mt-4">
-              <label className="text-xs font-medium text-slate-600">
-                Project Title
-              </label>
+              <label className="form-label">Project Title</label>
               <input
                 placeholder="Enter Project Title"
                 className="form-input"
@@ -236,12 +230,10 @@ const CreateEditProject = () => {
 
             {/* description */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Description
-              </label>
+              <label className="form-label">Description</label>
               <textarea
                 placeholder="Describe project"
-                className="form-input"
+                className="form-input form-textarea"
                 rows={4}
                 value={projectData.description}
                 onChange={({ target }) =>
@@ -249,10 +241,10 @@ const CreateEditProject = () => {
                 }
               />
             </div>
+
+            {/* technologies */}
             <div className="mt-4">
-              <label className="text-xs font-medium text-slate-600">
-                Development Technologies
-              </label>
+              <label className="form-label">Development Technologies</label>
               <input
                 placeholder="Enter Project Development Technologies"
                 className="form-input"
@@ -262,22 +254,20 @@ const CreateEditProject = () => {
                 }
               />
             </div>
-            <div className="grid grid-cols-12 gap-4 mt-2">
+
+            {/* status, dates, assigned */}
+            <div className="form-grid-inner">
               <div className="col-span-6 sm:col-span-4">
-                <label className="text-xs font-medium text-slate-600">
-                  Status
-                </label>
+                <label className="form-label">Status</label>
                 <SelectDropDown
                   options={PROJECT_STATUS_DATA}
                   value={projectData.status}
                   onChange={(value) => handleValueChange("status", value)}
-                  placeholder="Select Priority"
+                  placeholder="Select Status"
                 />
               </div>
               <div className="col-span-3 md:col-span-4">
-                <label className="text-xs font-medium text-slate-600">
-                  Start Date
-                </label>
+                <label className="form-label">Start Date</label>
                 <input
                   className="form-input"
                   value={projectData.startDate}
@@ -288,9 +278,7 @@ const CreateEditProject = () => {
                 />
               </div>
               <div className="col-span-3 md:col-span-4">
-                <label className="text-xs font-medium text-slate-600">
-                  End Date
-                </label>
+                <label className="form-label">End Date</label>
                 <input
                   className="form-input"
                   value={projectData.endDate}
@@ -301,9 +289,7 @@ const CreateEditProject = () => {
                 />
               </div>
               <div className="col-span-12 md:col-span-6">
-                <label className="text-xs font-medium text-slate-600">
-                  Assigned Employees
-                </label>
+                <label className="form-label">Assigned Employees</label>
                 <SelectUsers
                   selectedUsers={projectData.assignedEmployees}
                   setSelectedUsers={(value) =>
@@ -315,9 +301,7 @@ const CreateEditProject = () => {
 
             {/* attachment */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Add Attachments
-              </label>
+              <label className="form-label">Add Attachments</label>
               <AddAttachmentInput
                 attachment={projectData.attachments}
                 setAttachment={(value) =>
@@ -329,7 +313,7 @@ const CreateEditProject = () => {
             {/* button */}
             <div className="flex items-center justify-end mt-7">
               <button
-                className="add-btn"
+                className="submit-btn"
                 onClick={handleSubmit}
                 disabled={loading}
               >

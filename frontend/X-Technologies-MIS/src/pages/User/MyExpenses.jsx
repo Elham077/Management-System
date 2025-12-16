@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { LuPlus } from "react-icons/lu";
 import ExpenseStatusTabs from "../../components/ExpenseStatusTabs";
 import ExpenseCard from "../../components/Cards/ExpenseCard";
+import "./MyExpenses.css";
 
 const EXPENSE_STATUSES = ["All", "Pending", "Approved", "Rejected"];
 
@@ -24,11 +25,11 @@ const MyExpenses = () => {
       setLoading(true);
       setError(null);
 
-      // فراخوانی API (backend خودش محدود به createdBy=user یا admin است)
-      const response = await axiosInstance.get(API_PATHS.Expenses.GET_ALL_EXPENSES);
+      const response = await axiosInstance.get(
+        API_PATHS.Expenses.GET_ALL_EXPENSES
+      );
       const expenses = response.data || [];
 
-      // فیلتر وضعیت‌ها
       const filteredExpenses =
         filterStatus === "All"
           ? expenses
@@ -36,7 +37,6 @@ const MyExpenses = () => {
 
       setAllExpenses(filteredExpenses);
 
-      // ساخت summary وضعیت‌ها
       const statusCounts = {
         Pending: expenses.filter((e) => e.status === "Pending").length,
         Approved: expenses.filter((e) => e.status === "Approved").length,
@@ -79,22 +79,19 @@ const MyExpenses = () => {
 
   return (
     <DashboardLayout activeMenu="My Expenses">
-      <div className="my-5">
-        <div className="flex flex-col lg:flex-row justify-between lg:items-center">
-          <h2 className="text-xl md:text-xl font-semibold mb-4">My Expenses</h2>
-
-          {/* دکمه ایجاد صرفاً کاربر خودش */}
+      <div className="my-expenses-wrapper">
+        <div className="page-header">
+          <h2 className="page-title">My Expenses</h2>
           <button
-            className="flex items-center gap-1 create-btn"
+            className="create-btn"
             onClick={() => navigate("/user/add-expense")}
           >
             <LuPlus className="text-lg" /> Add Expense
           </button>
         </div>
 
-        {/* Status Tabs */}
         {tabs?.[0]?.count > 0 && (
-          <div className="flex items-center gap-3 mt-4">
+          <div className="tabs-container">
             <ExpenseStatusTabs
               tabs={tabs}
               activeTab={filterStatus}
@@ -103,13 +100,11 @@ const MyExpenses = () => {
           </div>
         )}
 
-        {/* Loading / Error */}
-        {loading && <p className="text-gray-500 mt-4">Loading expenses...</p>}
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {loading && <p className="loading-text">Loading expenses...</p>}
+        {error && <p className="error-text">{error}</p>}
 
-        {/* Expenses Grid */}
         {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+          <div className="expenses-grid">
             {allExpenses.length > 0 ? (
               allExpenses.map((expense) => (
                 <ExpenseCard
@@ -125,9 +120,7 @@ const MyExpenses = () => {
                 />
               ))
             ) : (
-              <p className="text-gray-500 col-span-full text-center">
-                No expenses found.
-              </p>
+              <p className="empty-state">No expenses found.</p>
             )}
           </div>
         )}

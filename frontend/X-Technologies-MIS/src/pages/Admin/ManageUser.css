@@ -1,0 +1,80 @@
+/* ManageUser.css */
+
+.manage-user-wrapper {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+  .page-title {
+    font-size: 24px;
+  }
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  background-color: #f9fafb;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .users-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.loading-text {
+  color: #6b7280;
+  margin-top: 16px;
+}
+
+.error-text {
+  color: #dc2626;
+  margin-top: 16px;
+}
+
+.empty-state {
+  color: #6b7280;
+  margin-top: 16px;
+}

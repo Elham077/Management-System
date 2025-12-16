@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@ import Modal from "../../components/Model";
 import DeleteAlert from "../../components/DeleteAlert";
 import { LuTrash2 } from "react-icons/lu";
 import { EXPENSE_CATEGORY_DATA } from "../../utils/data";
-
+import "./AddExpense.css";
 
 const AddExpense = () => {
   const navigate = useNavigate();
@@ -162,16 +161,16 @@ const AddExpense = () => {
 
   return (
     <DashboardLayout activeMenu={expenseId ? "Update Expense" : "Add Expense"}>
-      <div className="mt-5">
-        <div className="grid grid-cols-1 md:grid-cols-4 mt-4">
-          <div className="form-card col-span-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl md:text-xl font-medium">
+      <div className="add-expense-wrapper">
+        <div className="form-grid">
+          <div className="form-card">
+            <div className="form-header">
+              <h2 className="form-title">
                 {expenseId ? "Update Expense" : "Add New Expense"}
               </h2>
               {expenseId && (
                 <button
-                  className="flex items-center gap-1.5 text-[13px] font-medium text-rose-500 bg-rose-50 rounded px-2 py-1 border border-rose-100 hover:border-rose-300 cursor-pointer"
+                  className="delete-btn"
                   onClick={() => setOpenDeleteAlert(true)}
                 >
                   <LuTrash2 className="text-base" />
@@ -182,9 +181,7 @@ const AddExpense = () => {
 
             {/* Title */}
             <div className="mt-4">
-              <label className="text-xs font-medium text-slate-600">
-                Title
-              </label>
+              <label className="form-label">Title</label>
               <input
                 type="text"
                 placeholder="Expense title"
@@ -196,9 +193,7 @@ const AddExpense = () => {
 
             {/* Amount */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Amount
-              </label>
+              <label className="form-label">Amount</label>
               <input
                 type="number"
                 placeholder="1000"
@@ -210,9 +205,7 @@ const AddExpense = () => {
 
             {/* Category */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Category
-              </label>
+              <label className="form-label">Category</label>
               <SelectDropDown
                 options={EXPENSE_CATEGORY_DATA}
                 value={expenseData.category}
@@ -223,9 +216,7 @@ const AddExpense = () => {
 
             {/* Expense Date */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Expense Date
-              </label>
+              <label className="form-label">Expense Date</label>
               <input
                 type="date"
                 className="form-input"
@@ -238,11 +229,9 @@ const AddExpense = () => {
 
             {/* Description */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Description
-              </label>
+              <label className="form-label">Description</label>
               <textarea
-                className="form-input"
+                className="form-input form-textarea"
                 rows={4}
                 value={expenseData.description}
                 onChange={(e) =>
@@ -253,9 +242,7 @@ const AddExpense = () => {
 
             {/* Attachments */}
             <div className="mt-3">
-              <label className="text-xs font-medium text-slate-600">
-                Attachments
-              </label>
+              <label className="form-label">Attachments</label>
               <AddAttachmentInput
                 attachment={expenseData.attachment}
                 setAttachment={(val) => handleValueChange("attachment", val)}
@@ -263,14 +250,12 @@ const AddExpense = () => {
             </div>
 
             {/* Error */}
-            {error && (
-              <p className="text-rose-500 text-xs mt-2 font-medium">{error}</p>
-            )}
+            {error && <p className="error-text">{error}</p>}
 
             {/* Buttons */}
             <div className="flex items-center justify-end mt-7">
               <button
-                className="add-btn"
+                className="submit-btn"
                 onClick={handleSubmit}
                 disabled={loading}
               >

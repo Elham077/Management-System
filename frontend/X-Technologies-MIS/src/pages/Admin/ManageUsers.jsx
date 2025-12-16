@@ -5,11 +5,12 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import UserCard from "../../components/Cards/UserCard";
 import { toast } from "react-toastify";
+import "./ManageUser.css";
 
 const ManageUser = () => {
   const [allUsers, setAllUsers] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ برای حالت لودینگ
-  const [error, setError] = useState(null); // ✅ برای هندلینگ خطا
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getAllUsers = async () => {
     try {
@@ -32,7 +33,6 @@ const ManageUser = () => {
     }
   };
 
-  // Handle Download Reports
   const handleDownloadReport = async () => {
     try {
       const response = await axiosInstance.get(
@@ -41,7 +41,6 @@ const ManageUser = () => {
           responseType: "blob",
         }
       );
-      // create url for blob
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -55,38 +54,33 @@ const ManageUser = () => {
       toast.error("Failed to download user details. please try again.");
     }
   };
+
   useEffect(() => {
     getAllUsers();
   }, []);
 
   return (
     <DashboardLayout activeMenu="Manage Users">
-      <div className="mt-5 mb-10">
-        <div className="flex md:flex-row md:items-center justify-between">
-          <h2 className="text-xl md:text-xl font-medium">Manage User</h2>
-          <button
-            className="flex md:flex download-btn"
-            onClick={handleDownloadReport}
-          >
+      <div className="manage-user-wrapper">
+        <div className="page-header">
+          <h2 className="page-title">Manage User</h2>
+          <button className="download-btn" onClick={handleDownloadReport}>
             <LuFileSpreadsheet className="text-lg" />
             Download Report
           </button>
         </div>
 
-        {/* نمایش وضعیت لودینگ یا خطا */}
-        {loading && <p className="mt-4">Loading users...</p>}
-        {error && <p className="mt-4 text-red-500">{error}</p>}
+        {loading && <p className="loading-text">Loading users...</p>}
+        {error && <p className="error-text">{error}</p>}
 
-        {/* لیست یوزرها */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <div className="users-grid">
           {allUsers?.map((user) => (
             <UserCard key={user?._id} userInfo={user} />
           ))}
         </div>
 
-        {/* وقتی دیتایی نیست */}
         {!loading && !error && allUsers.length === 0 && (
-          <p className="mt-4 text-gray-500">No users found.</p>
+          <p className="empty-state">No users found.</p>
         )}
       </div>
     </DashboardLayout>

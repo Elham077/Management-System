@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import ProjectStatusTabs from "../../components/ProjectStatusTabs";
 import ProjectCard from "../../components/Cards/ProjectCard";
+import "./ManageProjectsUser.css";
 
 const ManageProjectsUser = () => {
   const [allProjects, setAllProjects] = useState([]);
@@ -19,9 +20,11 @@ const ManageProjectsUser = () => {
       );
       const projects = response.data || [];
       setAllProjects(projects);
+
       const normalizedStatuses = projects.map((p) =>
         p.status ? p.status.trim().toLowerCase() : ""
       );
+
       const statusArray = [
         { label: "All", count: projects.length },
         {
@@ -60,9 +63,9 @@ const ManageProjectsUser = () => {
 
   return (
     <DashboardLayout activeMenu="My Projects">
-      <div className="my-5">
-        <div className="flex flex-col lg:flex-row justify-between lg:items-center">
-          <h2 className="text-xl md:text-xl font-semibold mb-4">My Projects</h2>
+      <div className="manage-projects-user-wrapper">
+        <div className="page-header">
+          <h2 className="page-title">My Projects</h2>
 
           {tabs?.length > 0 && (
             <div className="flex items-center gap-3">
@@ -75,11 +78,9 @@ const ManageProjectsUser = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <div className="projects-grid">
           {loading ? (
-            <p className="col-span-3 text-center text-gray-500">
-              Loading projects...
-            </p>
+            <p className="loading-text">Loading projects...</p>
           ) : allProjects && allProjects.length > 0 ? (
             allProjects.map((item) => (
               <ProjectCard
@@ -97,14 +98,12 @@ const ManageProjectsUser = () => {
                     : []
                 }
                 attachmentCount={item.attachments?.length || 0}
-                onClick={() => handleClick(item)} 
-                isReadOnly={true} 
+                onClick={() => handleClick(item)}
+                isReadOnly={true}
               />
             ))
           ) : (
-            <p className="text-center col-span-3 text-gray-500">
-              No projects found.
-            </p>
+            <p className="empty-state">No projects found.</p>
           )}
         </div>
       </div>

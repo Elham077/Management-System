@@ -1,0 +1,125 @@
+/* SignUp.css */
+
+.signup-wrapper {
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .signup-wrapper {
+    width: 95%;
+    margin-top: 0;
+    padding: 32px 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .signup-wrapper {
+    width: 80%;
+  }
+}
+
+.signup-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.signup-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.password-strength {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.password-strength.strong {
+  color: #16a34a;
+}
+
+.password-strength.medium {
+  color: #d97706;
+}
+
+.password-strength.weak {
+  color: #dc2626;
+}
+
+.server-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #fdba74;
+  cursor: not-allowed;
+}
+
+.submit-btn:not(:disabled) {
+  background-color: #f97316;
+}
+
+.submit-btn:not(:disabled):hover {
+  background-color: #ea580c;
+}
+
+.login-text {
+  font-size: 14px;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.login-link {
+  color: #f97316;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
