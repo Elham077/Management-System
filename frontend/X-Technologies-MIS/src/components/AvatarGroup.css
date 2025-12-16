@@ -1,0 +1,35 @@
+/* AvatarGroup.css */
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  border-radius: 16px;
+}
+
+.avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+}
+
+.avatar-img:not(:first-child) {
+  margin-left: -8px;
+}
+
+.avatar-more {
+  margin-left: -8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+}

@@ -1,0 +1,77 @@
+/* TaskStatusTabs.css */
+
+.task-tabs-wrapper {
+  margin: 8px 0;
+  overflow-x: auto;
+}
+
+.task-tabs-container {
+  display: flex;
+  min-width: max-content;
+  role: tablist;
+}
+
+.task-tab-button {
+  position: relative;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.task-tab-button.active {
+  color: #2563eb;
+}
+
+.task-tab-button:not(.active) {
+  color: #6b7280;
+}
+
+.task-tab-button:not(.active):hover {
+  color: #374151;
+}
+
+.task-tab-content {
+  display: flex;
+  align-items: center;
+}
+
+.task-tab-label {
+  font-size: 12px;
+}
+
+.task-tab-count {
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.task-tab-count.active {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.task-tab-count:not(.active) {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.task-tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2563eb;
+}
+
+@media (min-width: 768px) {
+  .task-tab-button {
+    padding: 8px 16px;
+  }
+}

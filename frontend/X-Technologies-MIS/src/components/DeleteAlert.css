@@ -1,0 +1,44 @@
+/* DeleteAlert.css */
+
+.delete-alert-wrapper {
+  font-family: inherit;
+}
+
+.delete-alert-text {
+  font-size: 14px;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+.delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ef4444;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .delete-btn {
+    font-size: 14px;
+  }
+}
+
+.delete-btn:hover {
+  background-color: #fee2e2;
+}

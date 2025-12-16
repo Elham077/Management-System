@@ -1,0 +1,89 @@
+/* ExpenseChart.css */
+.expense-chart-wrapper {
+  width: 100%;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.chart-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.summary-box {
+  background-color: #ecfdf5;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1fae5;
+  margin-bottom: 24px;
+}
+
+.summary-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #065f46;
+}
+
+.summary-amount {
+  font-size: 28px;
+  font-weight: 700;
+  color: #059669;
+}
+
+.summary-note {
+  font-size: 12px;
+  color: #059669;
+  margin-top: 4px;
+}
+
+.chart-body {
+  background-color: #f9fafb;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.chart-subheader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chart-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.avg-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.tooltip-box {
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tooltip-value {
+  color: #059669;
+}

@@ -1,11 +1,12 @@
 import React from "react";
+import "./ExpenseStatusTabs.css";
 
 const ExpenseStatusTabs = ({ tabs = [], activeTab, setActiveTab }) => {
   if (!tabs.length) return null;
 
   return (
-    <div className="my-2 overflow-x-auto">
-      <div className="flex min-w-max" role="tablist">
+    <div className="tabs-wrapper">
+      <div className="tabs-container" role="tablist">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.label;
           return (
@@ -13,26 +14,16 @@ const ExpenseStatusTabs = ({ tabs = [], activeTab, setActiveTab }) => {
               key={tab.label}
               role="tab"
               aria-selected={isActive}
-              className={`relative px-3 md:px-4 py-2 text-sm font-medium transition-colors ${
-                isActive ? "text-blue-600" : "text-gray-500 hover:text-gray-700"
-              }`}
+              className={`tab-button ${isActive ? "active" : ""}`}
               onClick={() => setActiveTab(tab.label)}
             >
-              <div className="flex items-center">
-                <span className="text-xs">{tab.label}</span>
-                <span
-                  className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                    isActive
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-200/70 text-gray-600"
-                  }`}
-                >
+              <div className="tab-content">
+                <span className="tab-label">{tab.label}</span>
+                <span className={`tab-count ${isActive ? "active" : ""}`}>
                   {tab.count}
                 </span>
               </div>
-              {isActive && (
-                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600" />
-              )}
+              {isActive && <div className="tab-indicator" />}
             </button>
           );
         })}

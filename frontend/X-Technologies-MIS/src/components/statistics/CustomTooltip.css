@@ -1,0 +1,26 @@
+/* CustomTooltip.css */
+
+.tooltip-box {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.tooltip-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7c3aed;
+  margin-bottom: 4px;
+}
+
+.tooltip-text {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.tooltip-text span {
+  font-weight: 500;
+  color: #111827;
+}

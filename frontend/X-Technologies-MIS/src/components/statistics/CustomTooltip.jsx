@@ -1,14 +1,15 @@
 import React from "react";
+import "./CustomTooltip.css";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const { name, value } = payload[0];
 
     return (
-      <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
-        <p className="text-xs font-semibold text-purple-700 mb-1">{name}</p>
-        <p className="text-sm text-gray-600">
-          Count: <span className="font-medium text-gray-900">{value}</span>
+      <div className="tooltip-box">
+        <p className="tooltip-title">{name}</p>
+        <p className="tooltip-text">
+          Count: <span>{value}</span>
         </p>
       </div>
     );
