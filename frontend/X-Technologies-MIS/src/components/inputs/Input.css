@@ -7,6 +7,7 @@
 }
 
 .input-container {
+  position: relative; /* برای موقعیت دهی صحیح label */
   display: flex;
   align-items: center;
   border: 1px solid #d1d5db;
@@ -14,6 +15,7 @@
   padding: 12px;
   background-color: #ffffff;
   transition: all 0.2s ease;
+  min-height: 48px; /* ارتفاع ثابت برای consistency */
 }
 
 .input-container.error {
@@ -31,29 +33,44 @@
   border: none;
   outline: none;
   font-size: 14px;
+  padding: 0;
+  color: #111827;
 }
 
 .input-field::placeholder {
-  color: transparent;
+  color: transparent; /* برای label شناور */
+}
+
+.input-field:placeholder-shown {
+  color: #6b7280; /* رنگ placeholder زمانی که label شناور نیست */
 }
 
 .input-label {
   position: absolute;
   left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 14px;
   color: #64748b;
   transition: all 0.2s ease;
   pointer-events: none;
+  background-color: transparent;
+  padding: 0 4px;
 }
 
 .input-field:focus + .input-label,
 .input-field:not(:placeholder-shown) + .input-label {
-  top: -10px;
+  top: 0;
   left: 8px;
   font-size: 12px;
   color: #3b82f6;
   background-color: #ffffff;
-  padding: 0 4px;
+  transform: none;
+}
+
+/* استایل برای زمانی که خطا وجود دارد */
+.input-field:focus + .input-label.error-label {
+  color: #ef4444;
 }
 
 .password-toggle {
@@ -61,14 +78,28 @@
   color: #94a3b8;
   cursor: pointer;
   transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 }
 
 .password-toggle:hover {
   color: #3b82f6;
 }
 
+.password-toggle:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .error-message {
   color: #ef4444;
   font-size: 12px;
   margin-top: 4px;
+  margin-left: 4px;
 }

@@ -1,26 +1,23 @@
 import React from "react";
-import "./Progress.css";
-
 const Progress = ({ progress, status }) => {
-  const getColorClass = () => {
+  const getColor = () => {
     switch (status) {
       case "In Progress":
-        return "in-progress";
+        return "text-cyan-500 bg-cyan-500 border border-cyan-500/10";
       case "Completed":
-        return "completed";
+        return "text-indigo-500 bg-indigo-500 border border-indigo-500/10";
       default:
-        return "default";
+        return "text-violet-500 bg-violet-500 border border-violet-500/10";
     }
   };
-
   return (
-    <div className="progress-container">
+    <div className="w-full bg-gray-200 rounded-full h-1.5">
       <div
-        className={`progress-bar ${getColorClass()}`}
+        className={`${getColor()} h-1.5 rounded-full text-center text-xs font-medium`}
         style={{ width: `${progress}%` }}
       ></div>
     </div>
   );
 };
 
-export default Progress; 
+export default Progress;

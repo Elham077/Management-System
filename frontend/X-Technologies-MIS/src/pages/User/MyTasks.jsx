@@ -6,14 +6,12 @@ import axiosInstance from "../../utils/axiosInstance";
 import TaskStatusTabs from "../../components/TaskStatusTabs";
 import TaskCard from "../../components/Cards/TaskCard";
 import { useNavigate } from "react-router-dom";
-import "./ManageTask.css";
 
 const ManageTask = () => {
   const [allTasks, setAllTasks] = useState([]);
   const [tabs, setTabs] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
   const navigate = useNavigate();
-
   const getAllTasks = async () => {
     try {
       const response = await axiosInstance.get(API_PATHS.TASKS.GET_ALL_TASKS, {
@@ -25,30 +23,42 @@ const ManageTask = () => {
       const statusSummary = response.data?.statusSummary || {};
       const statusArray = [
         { label: "All", count: statusSummary.all || 0 },
-        { label: "Pending", count: statusSummary.pendingTasks || 0 },
-        { label: "In Progress", count: statusSummary.inProgressTasks || 0 },
-        { label: "Completed", count: statusSummary.completedTasks || 0 },
+        {
+          label: "Pending",
+          count: statusSummary.pendingTasks || 0,
+        },
+        {
+          label: "In Progress",
+          count: statusSummary.inProgressTasks || 0,
+        },
+        {
+          label: "Completed",
+          count: statusSummary.completedTasks || 0,
+        },
       ];
+
       setTabs(statusArray);
     } catch (error) {
       console.error("Error fetching tasks:", error);
     }
   };
-
   useEffect(() => {
     getAllTasks(filterStatus);
+    return () => {};
   }, [filterStatus]);
 
   return (
     <DashboardLayout activeMenu="Manage Tasks">
-      <div className="manage-task-wrapper">
-        <div className="page-header">
-          <div className="page-title-wrapper">
-            <h2 className="page-title">Manage Tasks</h2>
+      <div className="my-5">
+        <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-xl md:text-xl font-semibold mb-4">
+              Manage Tasks
+            </h2>
           </div>
 
           {tabs?.[0]?.count > 0 && (
-            <div className="tabs-wrapper">
+            <div className="flex items-center gap-3">
               <TaskStatusTabs
                 tabs={tabs}
                 activeTab={filterStatus}
@@ -57,8 +67,7 @@ const ManageTask = () => {
             </div>
           )}
         </div>
-
-        <div className="tasks-grid">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 ">
           {allTasks?.map((item) => (
             <TaskCard
               key={item._id}
@@ -83,5 +92,4 @@ const ManageTask = () => {
     </DashboardLayout>
   );
 };
-
 export default ManageTask;

@@ -7,7 +7,6 @@ import { LuFileSpreadsheet, LuPlus } from "react-icons/lu";
 import TaskStatusTabs from "../../components/TaskStatusTabs";
 import TaskCard from "../../components/Cards/TaskCard";
 import { toast } from "react-toastify";
-import "./ManageTask.css";
 
 const ManageTask = () => {
   const [allTasks, setAllTasks] = useState([]);
@@ -24,13 +23,22 @@ const ManageTask = () => {
         },
       });
       setAllTasks(response.data?.tasks?.length > 0 ? response.data.tasks : []);
-
+      // More robust status summary mapping
       const statusSummary = response.data?.statusSummary || {};
       const statusArray = [
         { label: "All", count: statusSummary.all || 0 },
-        { label: "Pending", count: statusSummary.pendingTasks || 0 },
-        { label: "In Progress", count: statusSummary.inProgressTasks || 0 },
-        { label: "Completed", count: statusSummary.completedTasks || 0 },
+        {
+          label: "Pending",
+          count: statusSummary.pendingTasks || 0,
+        },
+        {
+          label: "In Progress",
+          count: statusSummary.inProgressTasks || 0,
+        },
+        {
+          label: "Completed",
+          count: statusSummary.completedTasks || 0,
+        },
       ];
 
       setTabs(statusArray);
@@ -38,11 +46,10 @@ const ManageTask = () => {
       console.error("Error fetching tasks:", error);
     }
   };
-
   const handleClick = (taskData) => {
     navigate(`/admin/create-task`, { state: { taskId: taskData._id } });
   };
-
+  //down task Report
   const handleDownLoadReport = async () => {
     try {
       const response = await axiosInstance.get(
@@ -51,6 +58,7 @@ const ManageTask = () => {
           responseType: "blob",
         }
       );
+      // create url for blob
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -64,19 +72,21 @@ const ManageTask = () => {
       toast.error("Failed to download task details. please try again.");
     }
   };
-
   useEffect(() => {
     getAllTasks(filterStatus);
+    return () => {};
   }, [filterStatus]);
 
   return (
     <DashboardLayout activeMenu="Manage Tasks">
-      <div className="manage-task-wrapper">
-        <div className="page-header">
-          <div className="page-title-wrapper">
-            <h2 className="page-title">Manage Tasks</h2>
+      <div className="my-5">
+        <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-xl md:text-xl font-semibold mb-4">
+              Manage Tasks
+            </h2>
             <button
-              className="download-btn lg:hidden"
+              className="flex lg:hidden download-btn"
               onClick={handleDownLoadReport}
             >
               <LuFileSpreadsheet className="text-lg" />
@@ -84,7 +94,7 @@ const ManageTask = () => {
             </button>
             <button
               onClick={() => navigate("/admin/create-task")}
-              className="create-btn lg:hidden"
+              className="flex lg:hidden create-btn"
             >
               <LuPlus className="text-lg" />
               Create Task
@@ -92,21 +102,21 @@ const ManageTask = () => {
           </div>
 
           {tabs?.[0]?.count > 0 && (
-            <div className="header-actions">
+            <div className="flex items-center gap-3">
               <TaskStatusTabs
                 tabs={tabs}
                 activeTab={filterStatus}
                 setActiveTab={setFilterStatus}
               />
               <button
-                className="download-btn hidden lg:flex"
+                className="hidden lg:flex download-btn"
                 onClick={handleDownLoadReport}
               >
                 <LuFileSpreadsheet className="text-lg" /> Download Report
               </button>
               <button
                 onClick={() => navigate("/admin/create-task")}
-                className="create-btn hidden lg:flex"
+                className="hidden lg:flex create-btn"
               >
                 <LuPlus className="text-lg" />
                 Create Task
@@ -114,8 +124,7 @@ const ManageTask = () => {
             </div>
           )}
         </div>
-
-        <div className="tasks-grid">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 ">
           {allTasks?.map((item) => (
             <TaskCard
               key={item._id}
@@ -130,7 +139,9 @@ const ManageTask = () => {
               attachmentCount={item.attachment?.length || 0}
               completedTodoCount={item.completedTodoCount || 0}
               todoChecklist={item.todoChecklist || []}
-              onClick={() => handleClick(item)}
+              onClick={() => {
+                handleClick(item);
+              }}
             />
           ))}
         </div>
@@ -138,5 +149,4 @@ const ManageTask = () => {
     </DashboardLayout>
   );
 };
-
 export default ManageTask;

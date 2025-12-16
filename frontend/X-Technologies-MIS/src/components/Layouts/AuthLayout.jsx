@@ -1,16 +1,21 @@
 import React from "react";
 import UI_IMG from "../../assets/Bg-img.png";
-import "./AuthLayout.css";
 
 const AuthLayout = ({ children }) => {
   return (
-    <div className="auth-layout">
+    <div className="flex min-h-screen">
       {/* Left content */}
-      <div className="auth-left">{children}</div>
+      <div className="w-screen h-screen md:w-[60vw] px-12 pt-8 pb-12">
+        {children}
+      </div>
 
       {/* Right image */}
-      <div className="auth-right">
-        <img src={UI_IMG} alt="UI Illustration" className="auth-image" />
+      <div className="hidden md:flex w-[50vw] h-screen items-center justify-center">
+        <img
+          src={UI_IMG}
+          alt="UI Illustration"
+          className="max-w-[90%] max-h-[90%] object-contain shadow-2xl rounded-lg"
+        />
       </div>
     </div>
   );

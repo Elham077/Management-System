@@ -8,13 +8,13 @@ import axiosInstance from "../../utils/axiosInstance";
 import moment from "moment";
 import { addThousandSeparator } from "../../utils/helper";
 import InfoCard from "../../components/Cards/InfoCard";
+import { LuArrowRight } from "react-icons/lu";
 import TaskListTable from "../../components/TaskListTable";
 import CustomPieChart from "../../components/statistics/CustomPieChart";
 import CustomBarChart from "../../components/statistics/CustomBarChart";
 import ExpenseChart from "../../components/statistics/ExpenseChart";
-import "./UserDashboard.css";
 
-const COLORS = ["#f87171", "#60a5fa", "#22c55e"];
+const COLORS = ["#f87171", "#60a5fa", "#22c55e"]; // هماهنگ با کارت‌ها
 
 const UserDashboard = () => {
   useUserAuth();
@@ -23,9 +23,9 @@ const UserDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [pieChartData, setPieChartData] = useState([]);
   const [barChartData, setBarChartData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(true); // وضعیت لودینگ
+  const [error, setError] = useState(null); // وضعیت خطا
+  //? Prepare Chart Data
   const prepareChartData = (data) => {
     const taskdistribution = data?.taskDistribution || 0;
     const taskPriorityLevel = data?.taskPriorityLevel || 0;
@@ -57,57 +57,59 @@ const UserDashboard = () => {
         prepareChartData(response.data?.charts || null);
       }
     } catch (error) {
-      setError("Failed to fetch dashboard data.");
+      setError("Failed to fetch dashboard data.", error);
     } finally {
       setLoading(false);
     }
   };
 
+
   useEffect(() => {
     getDashboardData();
+    return () => {};
   }, []);
 
   if (loading) {
     return (
       <DashboardLayout activeMenu="Dashboard">
-        <div className="user-dashboard-wrapper">
-          <div className="welcome-card skeleton">
-            <div className="skeleton-bar w-1/4"></div>
-            <div className="skeleton-bar w-1/3"></div>
-          </div>
-          <div className="stats-grid">
+        <div className="card my-5 animate-pulse">
+          <div className="h-6 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-5">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="skeleton-card"></div>
+              <div key={i} className="h-20 bg-gray-200 rounded"></div>
             ))}
           </div>
-          <div className="chart-grid">
-            <div className="skeleton-chart"></div>
-            <div className="skeleton-chart"></div>
-            <div className="skeleton-chart full-width-card"></div>
-            <div className="skeleton-chart full-width-card"></div>
-          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
+          <div className="h-64 bg-gray-200 rounded"></div>
+          <div className="h-64 bg-gray-200 rounded"></div>
+          <div className="md:col-span-2 h-64 bg-gray-200 rounded"></div>
         </div>
       </DashboardLayout>
     );
   }
 
+  // حالت خطا
   if (error) {
     return (
       <DashboardLayout activeMenu="Dashboard">
-        <div className="error-message">{error}</div>
+        <div className="text-center text-red-600 mt-10">{error}</div>
       </DashboardLayout>
     );
   }
 
   return (
     <DashboardLayout activeMenu="Dashboard">
-      <div className="user-dashboard-wrapper">
-        <div className="welcome-card">
-          <h2 className="welcome-title">Hi, {user?.name}</h2>
-          <p className="welcome-date">{moment().format("dddd Do MMM YYYY")}</p>
+      <div className="card my-5">
+        <div className="col-span-3">
+          <h2 className="text-xl md:text-2xl">Hi, {user?.name}</h2>
+          <p className="text-xs md:text-[13px] text-gray-500 mt-1.5">
+            {moment().format("dddd Do MMM YYYY")}
+          </p>
         </div>
 
-        <div className="stats-grid">
+        {/* کارت‌ها */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-5">
           <InfoCard
             label="Total Tasks"
             value={addThousandSeparator(
@@ -137,28 +139,29 @@ const UserDashboard = () => {
             color="bg-green-500"
           />
         </div>
+      </div>
 
-        <div className="chart-grid">
-          <div className="chart-card">
-            <div className="chart-header">
-              <h5 className="chart-title">Task Distribution</h5>
-            </div>
-            <CustomPieChart data={pieChartData} colors={COLORS} />
+      {/* چارت‌ها و جدول */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
+        <div className="card">
+          <div className="flex items-center justify-between">
+            <h5 className="font-medium">Task Distribution</h5>
           </div>
+          <CustomPieChart data={pieChartData} colors={COLORS} />
+        </div>
 
-          <div className="chart-card">
-            <div className="chart-header">
-              <h5 className="chart-title">Task Priority Levels</h5>
-            </div>
-            <CustomBarChart data={barChartData} />
+        <div className="card">
+          <div className="flex items-center justify-between">
+            <h5 className="font-medium">Task Priority Levels</h5>
           </div>
+          <CustomBarChart data={barChartData} />
+        </div>
 
-          <div className="chart-card full-width-card">
-            <div className="chart-header">
-              <h5 className="chart-title">Recent Tasks</h5>
-            </div>
-            <TaskListTable tableData={dashboardData?.recentTasks || []} />
+        <div className="md:col-span-2 card">
+          <div className="flex items-center justify-between">
+            <h5 className="text-lg">Recent Tasks</h5>
           </div>
+          <TaskListTable tableData={dashboardData?.recentTasks || []} />
         </div>
       </div>
     </DashboardLayout>

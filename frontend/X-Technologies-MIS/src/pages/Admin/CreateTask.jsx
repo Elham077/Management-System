@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/Layouts/DashboardLayout";
 import { PRIORITY_DATA } from "../../utils/data";
@@ -13,7 +14,6 @@ import AddAttachmentInput from "../../components/inputs/AddAttachmentInput";
 import { toast } from "react-toastify";
 import Modal from "../../components/Model";
 import DeleteAlert from "../../components/DeleteAlert";
-import "./CreateTask.css";
 
 const CreateTask = () => {
   const location = useLocation();
@@ -27,7 +27,7 @@ const CreateTask = () => {
     dueDate: "",
     assignedTo: [],
     todoChecklist: [],
-    attachment: [],
+    attachment: [], // 👈 مفرد
   });
 
   const [currentTask, setCurrentTask] = useState(null);
@@ -44,13 +44,14 @@ const CreateTask = () => {
       title: "",
       description: "",
       priority: "Low",
-      dueDate: "",
+      dueDate: null,
       assignedTo: [],
       todoChecklist: [],
-      attachment: [],
+      attachment: [], // 👈 مفرد
     });
   };
 
+  // create Task
   const createTask = async () => {
     setLoading(true);
     try {
@@ -77,6 +78,7 @@ const CreateTask = () => {
     }
   };
 
+  // update Task
   const updateTask = async () => {
     setLoading(true);
     try {
@@ -107,6 +109,7 @@ const CreateTask = () => {
     }
   };
 
+  //handle Submit
   const handleSubmit = async () => {
     setError(null);
 
@@ -153,6 +156,7 @@ const CreateTask = () => {
     createTask();
   };
 
+  // Get Task Info By ID
   const getTaskDetailsById = async () => {
     try {
       const response = await axiosInstance.get(
@@ -172,7 +176,7 @@ const CreateTask = () => {
           assignedTo: taskInfo?.assignedTo?.map((item) => item?._id) || [],
           todoChecklist:
             taskInfo?.todoChecklist?.map((item) => item?.text) || [],
-          attachment: taskInfo?.attachment || [],
+          attachment: taskInfo?.attachment || [], // 👈 مفرد
         });
       }
     } catch (error) {
@@ -204,16 +208,16 @@ const CreateTask = () => {
 
   return (
     <DashboardLayout activeMenu="Create Task">
-      <div className="create-task-wrapper">
-        <div className="form-grid">
-          <div className="form-card">
-            <div className="form-header">
-              <h2 className="form-title">
+      <div className="mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 mt-4">
+          <div className="form-card col-span-3">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl md:text-xl font-medium ">
                 {taskId ? "Update Task" : "Create New Task"}
               </h2>
               {taskId && (
                 <button
-                  className="delete-btn"
+                  className="flex items-center gap-1.5 text-[13px] font-medium text-rose-500 bg-rose-50 rounded px-2 py-1 border border-rose-100 hover:border-rose-300 cursor-pointer"
                   onClick={() => setOpenDeleteAlert(true)}
                 >
                   <LuTrash2 className="text-base" />
@@ -224,7 +228,9 @@ const CreateTask = () => {
 
             {/* title */}
             <div className="mt-4">
-              <label className="form-label">Task Title</label>
+              <label className="text-xs font-medium text-slate-600">
+                Task Title
+              </label>
               <input
                 placeholder="Create App UI"
                 className="form-input"
@@ -237,10 +243,12 @@ const CreateTask = () => {
 
             {/* description */}
             <div className="mt-3">
-              <label className="form-label">Description</label>
+              <label className="text-xs font-medium text-slate-600">
+                Description
+              </label>
               <textarea
                 placeholder="Describe task"
-                className="form-input form-textarea"
+                className="form-input"
                 rows={4}
                 value={taskData.description}
                 onChange={({ target }) =>
@@ -250,9 +258,11 @@ const CreateTask = () => {
             </div>
 
             {/* priority + dueDate + assignTo */}
-            <div className="form-grid-inner">
+            <div className="grid grid-cols-12 gap-4 mt-2">
               <div className="col-span-6 sm:col-span-4">
-                <label className="form-label">Priority</label>
+                <label className="text-xs font-medium text-slate-600">
+                  Priority
+                </label>
                 <SelectDropDown
                   options={PRIORITY_DATA}
                   value={taskData.priority}
@@ -261,7 +271,9 @@ const CreateTask = () => {
                 />
               </div>
               <div className="col-span-3 md:col-span-4">
-                <label className="form-label">Due Date</label>
+                <label className="text-xs font-medium text-slate-600">
+                  Due Date
+                </label>
                 <input
                   className="form-input"
                   value={taskData.dueDate}
@@ -272,7 +284,9 @@ const CreateTask = () => {
                 />
               </div>
               <div className="col-span-12 md:col-span-3">
-                <label className="form-label">Assign To</label>
+                <label className="text-xs font-medium text-slate-600">
+                  Assign To
+                </label>
                 <SelectUsers
                   selectedUsers={taskData.assignedTo}
                   setSelectedUsers={(value) => {
@@ -284,7 +298,9 @@ const CreateTask = () => {
 
             {/* todo list */}
             <div className="mt-3">
-              <label className="form-label">TODO Checklist</label>
+              <label className="text-xs font-medium text-slate-600">
+                TODO Checklist
+              </label>
               <TodoListInput
                 todoList={taskData?.todoChecklist}
                 setTodoList={(value) =>
@@ -295,9 +311,11 @@ const CreateTask = () => {
 
             {/* attachment */}
             <div className="mt-3">
-              <label className="form-label">Add Attachment</label>
+              <label className="text-xs font-medium text-slate-600">
+                Add Attachment
+              </label>
               <AddAttachmentInput
-                attachment={taskData?.attachment}
+                attachment={taskData?.attachment} // 👈 مفرد
                 setAttachment={(value) =>
                   handleValueChange("attachment", value)
                 }
@@ -305,12 +323,14 @@ const CreateTask = () => {
             </div>
 
             {/* error */}
-            {error && <p className="error-text">{error}</p>}
+            {error && (
+              <p className="text-rose-500 text-xs mt-2 font-medium">{error}</p>
+            )}
 
             {/* button */}
             <div className="flex items-center justify-end mt-7">
               <button
-                className="submit-btn"
+                className="add-btn"
                 onClick={handleSubmit}
                 disabled={loading}
               >

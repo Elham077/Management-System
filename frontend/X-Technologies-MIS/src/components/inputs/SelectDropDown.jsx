@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { LuChevronDown } from "react-icons/lu";
-import "./SelectDropDown.css";
 
 const SelectDropDown = ({ options, value, onChange, placeholder }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,29 +23,34 @@ const SelectDropDown = ({ options, value, onChange, placeholder }) => {
   }, []);
 
   return (
-    <div ref={dropdownRef} className="dropdown-container">
+    <div ref={dropdownRef} className="relative w-full">
+      {/* DropDown Button */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="dropdown-button"
+        className="w-full text-sm text-black outline-none bg-white border border-slate-200 px-2.5 py-3 rounded-md mt-2 flex justify-between items-center hover:border-slate-400"
       >
         {value
           ? options.find((opt) => opt.value === value)?.label
           : placeholder}
-        <span className="dropdown-icon">
-          <LuChevronDown className={isOpen ? "open" : ""} />
+        <span className="ml-2 transition-transform">
+          <LuChevronDown className={isOpen ? "rotate-180" : ""} />
         </span>
       </button>
 
+      {/* DropDown Menu */}
       {isOpen && (
-        <div className="dropdown-menu">
+        <div className="absolute w-full bg-white border border-slate-200 rounded-md mt-1 shadow-md z-10">
           {options.map((option) => (
             <div
               key={option.value}
               onClick={() => handleSelect(option.value)}
-              className={`dropdown-item ${
-                option.value === value ? "selected" : ""
-              }`}
+              className={`px-3 py-2 text-sm cursor-pointer 
+                ${
+                  option.value === value
+                    ? "bg-blue-50 text-blue-600 font-medium"
+                    : "hover:bg-gray-100"
+                }`}
             >
               {option.label}
             </div>

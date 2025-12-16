@@ -8,7 +8,6 @@ import moment from "moment";
 import SelectDropDown from "../../components/inputs/SelectDropDown";
 import AddAttachmentInput from "../../components/inputs/AddAttachmentInput";
 import { EXPENSE_CATEGORY_DATA } from "../../utils/data";
-import "./UserCreateExpense.css";
 
 const UserCreateExpense = () => {
   const navigate = useNavigate();
@@ -139,23 +138,25 @@ const UserCreateExpense = () => {
       <DashboardLayout
         activeMenu={expenseId ? "Update Expense" : "Add Expense"}
       >
-        <p className="loading-text">Loading expense data...</p>
+        <p className="text-center mt-10">Loading expense data...</p>
       </DashboardLayout>
     );
   }
 
   return (
     <DashboardLayout activeMenu={expenseId ? "Update Expense" : "Add Expense"}>
-      <div className="user-create-expense-wrapper">
-        <div className="form-grid">
-          <div className="form-card">
-            <h2 className="form-title">
+      <div className="mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 mt-4">
+          <div className="form-card col-span-3">
+            <h2 className="text-xl md:text-xl font-medium mb-4">
               {expenseId ? "Update Expense" : "Add New Expense"}
             </h2>
 
             {/* Title */}
             <div className="mt-4">
-              <label className="form-label">Title</label>
+              <label className="text-xs font-medium text-slate-600">
+                Title
+              </label>
               <input
                 type="text"
                 placeholder="Expense title"
@@ -167,7 +168,9 @@ const UserCreateExpense = () => {
 
             {/* Amount */}
             <div className="mt-3">
-              <label className="form-label">Amount</label>
+              <label className="text-xs font-medium text-slate-600">
+                Amount
+              </label>
               <input
                 type="number"
                 placeholder="1000"
@@ -179,7 +182,9 @@ const UserCreateExpense = () => {
 
             {/* Category */}
             <div className="mt-3">
-              <label className="form-label">Category</label>
+              <label className="text-xs font-medium text-slate-600">
+                Category
+              </label>
               <SelectDropDown
                 options={EXPENSE_CATEGORY_DATA}
                 value={expenseData.category || "Office"}
@@ -190,7 +195,9 @@ const UserCreateExpense = () => {
 
             {/* Expense Date */}
             <div className="mt-3">
-              <label className="form-label">Expense Date</label>
+              <label className="text-xs font-medium text-slate-600">
+                Expense Date
+              </label>
               <input
                 type="date"
                 className="form-input"
@@ -203,9 +210,11 @@ const UserCreateExpense = () => {
 
             {/* Description */}
             <div className="mt-3">
-              <label className="form-label">Description</label>
+              <label className="text-xs font-medium text-slate-600">
+                Description
+              </label>
               <textarea
-                className="form-input form-textarea"
+                className="form-input"
                 rows={4}
                 value={expenseData.description}
                 onChange={(e) =>
@@ -216,7 +225,9 @@ const UserCreateExpense = () => {
 
             {/* Attachments */}
             <div className="mt-3">
-              <label className="form-label">Attachments</label>
+              <label className="text-xs font-medium text-slate-600">
+                Attachments
+              </label>
               <AddAttachmentInput
                 attachment={expenseData.attachment || []}
                 setAttachment={(val) => handleValueChange("attachment", val)}
@@ -224,10 +235,12 @@ const UserCreateExpense = () => {
             </div>
 
             {/* Error */}
-            {error && <p className="error-text">{error}</p>}
+            {error && (
+              <p className="text-rose-500 text-xs mt-2 font-medium">{error}</p>
+            )}
 
             {/* Submit Button */}
-            <div className="submit-btn-wrapper">
+            <div className="flex items-center justify-end mt-7">
               <button
                 className="add-btn"
                 onClick={handleSubmit}
