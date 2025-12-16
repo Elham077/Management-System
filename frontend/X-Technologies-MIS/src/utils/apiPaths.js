@@ -52,4 +52,11 @@ export const API_PATHS = {
     UPLOAD_EXPENSES_ATTACHMENT: "/api/expenses/upload-attachment", //? =======================================> upload expenses attachment
     UPLOAD_PROJECTS_ATTACHMENT: "/api/projects/upload-attachment", //? =======================================> upload projects attachment
   },
+  ABOUT: {
+    GET_ALL_ABOUTS: "/api/about/abouts", // GET
+    GET_ABOUT_BY_ID: (aboutId) => `/api/about/getabout/${aboutId}`, // GET
+    CREATE_ABOUT: "/api/about/create", // POST
+    UPDATE_ABOUT: (aboutId) => `/api/about/update/${aboutId}`, // PUT
+    DELETE_ABOUT: (aboutId) => `/api/about/delete/${aboutId}`, // DELETE
+  },
 };

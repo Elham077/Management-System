@@ -15,6 +15,8 @@ const taskRoutes = require("./routes/taskRoutes");
 const reportRoutes = require("./routes/reportRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const expenseRoutes = require("./routes/expenseRoutes");
+const aboutRoutes = require("./routes/aboutRoutes");
+
 const app = express();
 //? ==================Load environment variables====================
 dotenv.config({ path: path.join(__dirname, "config", "config.env") });
@@ -39,6 +41,7 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/expenses", expenseRoutes);
+app.use("/api/about", aboutRoutes);
 
 //? serve uploads folder
 app.use("/uploads", express.static("uploads"));
